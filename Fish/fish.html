@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Fish Game! </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+
+sjs.open(target,1300,850)
+var background = new sjs.Image("Images/background.png");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+//Player properties beloow here.
+var player = new sjs.Image("Images/fish_right.png")
+player.setSize(100,50);
+player.accel = .1;
+//Right keyDown functions
+sjs.keyDown(D_KEY, function(){
+	player.setImage("Images/fish_right.png");
+	player.type = "player";
+
+player.pushRight();
+
+});
+//Enemies
+setInterval(function(){
+	var speed Math.round(1 + Math.random(*)11)
+if(Math.random() > 0.5){
+	var badfish = new sjs.Image("Images/fish_right.png")
+	badfish.type = "enemy";
+	enemy.setSize(200,60);
+	enemy.noBounds = true;
+	enemy.friction = 0.23;
+}
+},1000);
+//left keyDown functions
+sjs.keyDown(A_KEY, function(){
+player.setImage("Images/fish_left.png");
+player.pushLeft();
+});
+//Up Key Down functions
+sjs.keyDown(W_KEY, function(){
+player.pushUp();
+});
+//DOWN_KEY functions
+sjs.keyDown(S_KEY, function(){
+player.pushDown();
+});
+
+//power up
+//crumbs
+setInterval(function(){
+	var x = Math.floor(Math.random() * 783);
+		var y = Math.floor(Math.random() * 470);
+//power up roperties
+
+setInterval(function(){
+
+var powerUp = new sjs.Image("Images/crumbs.png");
+var x = Math.floor(Math.random() * 1300);
+var y = Math.floor(Math.random() * 751);
+powerUp.moveTo(x, y);
+},10000);//end of serInterval of crumbs
+powerUp.type = "powerUp";
+powerUp.setGravity();
+powerUp.setSize(17,30);
+powerUp.noBounds = true;
+poweUp.moveTo(x, y);
+ball.friction = 5;
+}, 100000000);
+sjs.onHit("player","powerUp",function(x,y){
+x.grow(60,30);
+setTimeout(function(){
+	x.grow(-60,-30);
+}, 4000);
+y.destroy();
+});
+} //end of start
+</script>
+</head>
+<body onload="start()">
+<h1> Fish Game! </h1>
+
+<div id="target" style="margin:auto;background:blue;"></div>
+</body>
+</html>

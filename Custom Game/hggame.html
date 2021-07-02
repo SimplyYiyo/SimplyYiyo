@@ -1,0 +1,32 @@
+<html>
+<head>
+
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+	
+sjs.open("target",500,500);
+var background = new sjs.Image("Images/Mario kind of background.png");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+var testBtn = new sjs.Button("Test", function(){
+
+	sjs.loadImageArray(localStorage.getItem('level'));
+localStorage.setItem('level', sjs.saveImageArray(level));
+window.open('Test.html', '_blank');
+});
+
+}//end start
+
+
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Game </h1>
+<center>
+<input type="image" src="Images/green platform.png" onclick="platform()">
+
+</center>
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

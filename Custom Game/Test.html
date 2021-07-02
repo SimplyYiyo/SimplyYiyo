@@ -1,0 +1,68 @@
+<html>
+<head>
+
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+	
+sjs.open("target",500,500);
+var background = new sjs.Image("Images/Mario kind of background.png");
+var character = new sjs.Image("Images/green.png");
+character.type = "player";
+character.setGravity(3);
+character.friction = .3;
+background.setSize(sjs.getWidth(), sjs.getHeight());
+sjs.loadImageArray(localStorage.getItem('level'));
+var canJump = true;
+sjs.keyDown(W_KEY ,function(){
+   canJump = false;
+character.pushUp(14);
+});
+sjs.onHit("character","bottom_screen", function(x,y){
+	canJump = true;
+})
+sjs.keyDown(A_KEY, function(){
+   character.pushLeft(2);
+});
+sjs.keyDown(D_KEY, function(){
+   character.pushRight(2);
+});
+sjs.keyDown(S_KEY, function(){
+   character.pushDown(2);
+});
+
+window.addEventListener("keyup", function(e){
+
+});
+sjs.onHit("platform", "character", function(x,y){
+sjs.stoppedBy(x,y);
+if(canJump == false && x.y < y.y-85){
+canJump = true;
+}
+});
+sjs.onHit("character","right_screen", function(x,y){
+	window.open('win.html', '_blank');
+});
+}//end start
+function platform(){
+	var platform = new sjs.Image("Images/green platform.png");
+	level.push(platform);
+	platform.onMouseDown(function(){
+		platform.center()
+platform.draggable();
+platform.follow(sjs.mouse);
+});
+}
+
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Game </h1>
+<center>
+<input type="image" src="Images/green platform.png" onclick="platform()">
+
+</center>
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
